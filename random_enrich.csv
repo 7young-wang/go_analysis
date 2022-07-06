@@ -1,0 +1,16 @@
+"","ONTOLOGY","ID","Description","GeneRatio","BgRatio","pvalue","p.adjust","qvalue","geneID","Count"
+"GO:0006919","BP","GO:0006919","activation of cysteine-type endopeptidase activity involved in apoptotic process","2/13","20/18284",8.80285287430656e-05,0.0110388370028049,0.00602509621985452,"cflara/mul1a",2
+"GO:0043280","BP","GO:0043280","positive regulation of cysteine-type endopeptidase activity involved in apoptotic process","2/13","35/18284",0.000274014664865579,0.0110388370028049,0.00602509621985452,"cflara/mul1a",2
+"GO:2001056","BP","GO:2001056","positive regulation of cysteine-type endopeptidase activity","2/13","36/18284",0.000290016831179268,0.0110388370028049,0.00602509621985452,"cflara/mul1a",2
+"GO:0010950","BP","GO:0010950","positive regulation of endopeptidase activity","2/13","39/18284",0.000340704845765583,0.0110388370028049,0.00602509621985452,"cflara/mul1a",2
+"GO:0010952","BP","GO:0010952","positive regulation of peptidase activity","2/13","39/18284",0.000340704845765583,0.0110388370028049,0.00602509621985452,"cflara/mul1a",2
+"GO:0043281","BP","GO:0043281","regulation of cysteine-type endopeptidase activity involved in apoptotic process","2/13","45/18284",0.000454098680399578,0.0119596539417189,0.00652768636195184,"cflara/mul1a",2
+"GO:2000116","BP","GO:2000116","regulation of cysteine-type endopeptidase activity","2/13","48/18284",0.000516775170321188,0.0119596539417189,0.00652768636195184,"cflara/mul1a",2
+"GO:0045862","BP","GO:0045862","positive regulation of proteolysis","2/13","86/18284",0.00164916014465599,0.0333954929292838,0.0182275594935662,"cflara/mul1a",2
+"GO:0052548","BP","GO:0052548","regulation of endopeptidase activity","2/13","93/18284",0.00192485297951906,0.034647353631343,0.0189108362900118,"cflara/mul1a",2
+"GO:0016887","MF","GO:0016887","ATP hydrolysis activity","2/13","85/17771",0.0017041972782366,0.0493248821215314,0.0211203777148395,"hspa9/kif5ba",2
+"GO:0140657","MF","GO:0140657","ATP-dependent activity","3/13","422/17771",0.0031846443358792,0.0493248821215314,0.0211203777148395,"hspa9/atp7a/kif5ba",3
+"GO:0017111","MF","GO:0017111","nucleoside-triphosphatase activity","3/13","430/17771",0.00335822628220045,0.0493248821215314,0.0211203777148395,"hspa9/dnajc27/kif5ba",3
+"GO:0016462","MF","GO:0016462","pyrophosphatase activity","3/13","485/17771",0.00471105307959325,0.0493248821215314,0.0211203777148395,"hspa9/dnajc27/kif5ba",3
+"GO:0016818","MF","GO:0016818","hydrolase activity, acting on acid anhydrides, in phosphorus-containing anhydrides","3/13","495/17771",0.00498787205627917,0.0493248821215314,0.0211203777148395,"hspa9/dnajc27/kif5ba",3
+"GO:0016817","MF","GO:0016817","hydrolase activity, acting on acid anhydrides","3/13","496/17771",0.00501608970727437,0.0493248821215314,0.0211203777148395,"hspa9/dnajc27/kif5ba",3

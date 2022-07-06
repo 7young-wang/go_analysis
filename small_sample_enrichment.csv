@@ -1,0 +1,4 @@
+"","ONTOLOGY","ID","Description","GeneRatio","BgRatio","pvalue","p.adjust","qvalue","geneID","Count"
+"GO:0008408","MF","GO:0008408","3'-5' exonuclease activity","2/11","54/18410",0.000456652915711798,0.0234399768123327,0.00975470271259869,"CNOT1/POLD1",2
+"GO:0016796","MF","GO:0016796","exonuclease activity, active with either ribo- or deoxyribonucleic acids and producing 5'-phosphomonoesters","2/11","59/18410",0.000545115739821692,0.0234399768123327,0.00975470271259869,"CNOT1/POLD1",2
+"GO:0004527","MF","GO:0004527","exonuclease activity","2/11","80/18410",0.000999891049418452,0.0286635434166623,0.0119285248000798,"CNOT1/POLD1",2

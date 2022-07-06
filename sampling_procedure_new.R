@@ -7,10 +7,12 @@ sampling_procedure<-function(ont, method, comb, origin, number_cycle)
   
   ###======================= specify different network =============================###
   
-  transp <- paste("./supporting_files/", paste(ont, method, comb, "matrix", sep = "_"), ".RData", sep = "")
+  #transp <- paste("./supporting_files/", paste(ont, method, comb, "matrix", sep = "_"), ".RData", sep = "")
+  transp <- paste("./supporting_files/", "BP_RWR", ".RData", sep = "")
   
   cat("Loading propagation probabilities...\n")
   load(transp); 
+  target_matrix <- df
   #nodes<-colnames(target_matrix) #nodes are all the human genes in the matrix
   
   nodes<-colnames(target_matrix)
@@ -27,6 +29,8 @@ sampling_procedure<-function(ont, method, comb, origin, number_cycle)
   } else if (ont == "CC") {
     rank_table <- read.delim("./CC/rank_table_CC")
     #target_matrix <- target_matrix_CC
+  } else {
+    rank_table <- read.delim("./RWR_BP/0705RWR_table_RWR_BP")
   }
   gene <- gene[is.element(gene$genes,nodes),]
   region<-split(gene$genes,gene$peak_snp) #divide the genes by their LD block; we need to select only one gene from each block; group the genes by snp
@@ -185,7 +189,7 @@ sampling_procedure<-function(ont, method, comb, origin, number_cycle)
   output <- cbind(output, ranking)
   colnames(output) <- c("gene","post_prob","region", "rank")
   rank_table <- merge(rank_table, output, by.x = c("gene", "peak_snp"), by.y = c("gene", "region"))
-  rank_table <- rank_table[ , !names(rank_table) %in% c("region", "post_prob")]
+  rank_table <- rank_table[ , !names(rank_table) %in% c("region", "rank")]
   #rankings <- as.data.frame(output$gene)
   #colnames(rankings) <- c("gene")
   freq <- output
@@ -205,8 +209,18 @@ sampling_procedure<-function(ont, method, comb, origin, number_cycle)
     rank_file <- paste("./MF/","rank_table_MF","",sep="")
   } else if (ont == "CC") {
     rank_file <- paste("./CC/","rank_table_CC","",sep="")
+  } else {
+    rank_file <- "./RWR_BP/0705RWR_table_RWR_BP"
   }
   write.table(freq,res_file,quote=F,row.names=F,sep="\t")
   write.table(rank_table,rank_file,quote=F,row.names=F,sep="\t")
   output
 }
+
+
+
+
+
+
+
+

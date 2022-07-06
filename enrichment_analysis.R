@@ -1,21 +1,25 @@
 library(clusterProfiler)
 bp_gene_list <- read.csv("bp_final.csv")$gene
+temp_list <- read.csv("temp.csv")$gene
 cc_gene_list <- read.csv("CC_final.csv")$gene
 mf_gene_list <- read.csv("MF_final.csv")$gene
 all_gene_list <- read.delim("./BP/rank_table_BP copy")
 random_genes <- all_gene_list[sample(nrow(all_gene_list), 12), ]$gene
 random_genes
 enrichment_test <- function(gene, name) {
-  ego <- enrichGO(gene = gene, OrgDb = "org.Dr.eg.db", ont = "ALL", 
+  ego <- enrichGO(gene = temp_list, OrgDb = "org.Dr.eg.db", ont = "ALL", 
                   pAdjustMethod = "BH", pvalueCutoff = 0.05, qvalueCutoff = 0.2, keyType = "SYMBOL")
   write.csv(ego, file = paste(name, ".csv", sep = ""))
 }
-
+temp_list
+bp_gene_list
+temp_list <- unname(temp_list)
 enrichment_test(random_genes, "random_test")
 enrichment_test(cc_gene_list, "cc_enrichment")
 enrichment_test(mf_gene_list, "mf_enrichment")
 enrichment_test(one_time, "one_time_bp_enrich")
 enrichment_test(new_random, "random_enrich")
+enrichment_test(temp_list, "temp_enrich")
 
 ego <- enrichGO(gene = bp_gene_list, OrgDb = "org.Dr.eg.db", ont = "ALL", 
                 pAdjustMethod = "BH", pvalueCutoff = 0.05, qvalueCutoff = 0.2, keyType = "SYMBOL")
@@ -29,7 +33,7 @@ ego <- enrichGO(gene = small_sample, OrgDb = "org.Hs.eg.db", ont = "ALL",
                 pAdjustMethod = "BH", pvalueCutoff = 0.05, qvalueCutoff = 0.2, keyType = "SYMBOL")
 small_sample <- sample(sample_test, 12)
 
-ego <- enrichGO(gene = bp_gene_list, OrgDb = "org.Dr.eg.db", ont = "ALL", 
+ego <- enrichGO(gene = temp_list, OrgDb = "org.Dr.eg.db", ont = "ALL", 
                 pAdjustMethod = "BH", pvalueCutoff = 1, qvalueCutoff = 0.2, keyType = "SYMBOL")
 
 one_time <- read.delim("./BP/test")

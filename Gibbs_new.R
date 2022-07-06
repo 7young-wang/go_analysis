@@ -23,13 +23,46 @@
   {
    #source("extract_candidate_genes.R")
    #source("preparation.R")
-   source("sampling_procedure.R")
+   source("sampling_procedure_new.R")
+   source("preparation_new.R")
    
    #source("extra_evi.R") 
- 
+  name <- paste(args[1], args[2], args[3], sep = "_")
    #args<-c("./SNP_file/SCZ_20_loci_test",1000000,"./iRIGS_result_108_loci/","SCZ")
+  #preparation(args)
+  for (i in 1:args[5]) {
+    output<-sampling_procedure(args[1], args[2], args[3], args[4], i)
+  }
   
-   output<-sampling_procedure(args)
+  calculate_ranking <- function(ont) {
+    #rank_table <- read.delim(paste("./", ont, "/", "rank_table_", ont, sep = ""))
+    rank_table <- read.delim("./RWR_BP/0705RWR_table_RWR_BP")
+    temp <- rank_table[, !names(rank_table) %in% c("gene", "peak_snp")]
+    rank_table$average_rank <- rowMeans(temp)
+    #write.table(rank_table,paste("./", ont, "/", "rank_table_", ont, sep = ""),quote=F,row.names=F,sep="\t")
+    write.table(rank_table, "./RWR_BP/0705RWR_table_RWR_BP",quote=F,row.names=F,sep="\t")
+    
+    return (rank_table)
+  }
+  
+  rank_table <- calculate_ranking(args[1])
+  
+  select_genes <- function(table, ont) {
+    final_result <- NULL
+    split_result <- split(table, table$peak_snp)
+    find_best <- function(one_ld) {
+      if (is.null(final_result)) {
+        final_result <<- one_ld[order(one_ld$average_rank, descending = TRUE),][, c(1, 2)][1,]
+      } else {
+        final_result[nrow(final_result) + 1,] <<- one_ld[order(one_ld$average_rank, descending = TRUE),][, c(1, 2)][1,]
+      }
+    }
+    lapply(split_result, find_best)
+    write.csv(final_result, paste(ont, "final_result.csv", sep = "_"))
+  }
+  
+  select_genes(rank_table, name)
+
    cat("All analysis finished!\n")
   }
  }

@@ -1,10 +1,10 @@
-library(GOSemSim)
+#library(GOSemSim)
 args<-commandArgs(TRUE)
 
 #for i in {1..100}; do RScript Gibbs.R BP ./BP $i; done
 
 preparation <- function(args) {
-  #sample command BP Resnik BMA filename(for example lin_have_a_try) genes to make matrix(e.g. bp_final.csv, i.e. genes you wanna work with)
+  #sample command BP Resnik BMA genes to make matrix(e.g. bp_final.csv, i.e. genes you wanna work with)
   ontology <- args[1]
   ic_method <- args[2]
   comb_method <- args[3]
@@ -46,27 +46,30 @@ preparation <- function(args) {
     cat("generate_matrix was runned \n")
   }
   
-  generate_matrix(origin, ontology, ic_method, comb_method)
-  cat(paste("This is running", args[2], "method with", args[3], "combination method \n"))
+  #generate_matrix(origin, ontology, ic_method, comb_method)
+  #cat(paste("This is running", args[2], "method with", args[3], "combination method \n"))
   
   #generate a list of genes that appear in the matrix
   generate_gene_list <- function(matrixFile, original, ont) {
     #ont is BP, CC or MF
     load(matrixFile)
+    target_matrix <- df
     gene_list <- as.data.frame(colnames(target_matrix))
     colnames(gene_list) <- c("gene")
     origin1 <- read.delim(original)
     gene_list <- merge(gene_list, origin1, by.x = "gene", by.y = "genes")
     gene_list <- gene_list[ , !names(gene_list) %in% c("trait")]
     gene_list <- exclude_single_gene(gene_list)
+    if(!file.exists(ont)) dir.create(ont,showWarnings=T,recursive=T)
     
-    write.table(gene_list, paste("./", ont, "/rank_table_", ont, sep = "") ,quote=F,row.names=F,sep="\t")
+    write.table(gene_list, paste("./", ont, "/0705RWR_table_", ont, sep = "") ,quote=F,row.names=F,sep="\t")
   }
   
-  generate_gene_list(paste("./supporting_files/", filename, ".RData", sep = ""), origin, ontology)
+  generate_gene_list(paste("./supporting_files/", "BP_RWR", ".RData", sep = ""), origin, ontology)
   
   convert_to_csv <- function(result, name) {
     temp <- read.delim(result)
     write.csv(temp, paste(name, ".csv", sep = ""))
   }
 }
+preparation(args)
